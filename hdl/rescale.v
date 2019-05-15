@@ -21,6 +21,8 @@
 `define _rescale_
 
 
+`default_nettype none
+
 module rescale
   #(parameter
     NUM_WIDTH   = 33,
@@ -133,5 +135,7 @@ module rescale
 
 
 endmodule
+
+`default_nettype wire
 
 `endif //  `ifndef _rescale_

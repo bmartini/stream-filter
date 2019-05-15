@@ -23,6 +23,8 @@
 `include "clip.v"
 
 
+`default_nettype none
+
 module stream_filter
   #(parameter
     CFG_DWIDTH  = 32,
@@ -265,5 +267,7 @@ module stream_filter
 
 
 endmodule
+
+`default_nettype wire
 
 `endif //  `ifndef _stream_filter_

@@ -2,6 +2,8 @@
 `define _multiply_add_
 
 
+`default_nettype none
+
 module multiply_add
   #(parameter
     IMG_WIDTH   = 16,
@@ -109,5 +111,7 @@ module multiply_add
 
 
 endmodule
+
+`default_nettype wire
 
 `endif //  `ifndef _multiply_add_

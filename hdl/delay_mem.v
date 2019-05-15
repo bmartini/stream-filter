@@ -16,6 +16,7 @@
 `define _delay_mem_
 
 
+`default_nettype none
 
 module delay_mem
   #(parameter
@@ -132,5 +133,7 @@ module delay_mem
 
 
 endmodule
+
+`default_nettype wire
 
 `endif //  `ifndef _delay_mem_

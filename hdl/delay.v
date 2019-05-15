@@ -17,6 +17,9 @@
 
 `include "delay_mem.v"
 
+
+`default_nettype none
+
 module delay
   #(parameter
     HEIGHT_NB   = 3,
@@ -103,5 +106,7 @@ module delay
 
 
 endmodule
+
+`default_nettype wire
 
 `endif //  `ifndef _delay_

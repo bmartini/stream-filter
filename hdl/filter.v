@@ -18,6 +18,9 @@
 
 `include "multiply_add.v"
 
+
+`default_nettype none
+
 module filter
   #(parameter
     HEIGHT_NB   = 3,
@@ -134,5 +137,7 @@ module filter
 
 
 endmodule
+
+`default_nettype wire
 
 `endif //  `ifndef _filter_

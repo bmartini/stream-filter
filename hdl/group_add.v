@@ -16,6 +16,8 @@
 `define _group_add_
 
 
+`default_nettype none
+
 module group_add
   #(parameter
     GROUP_NB    = 4,
@@ -93,5 +95,7 @@ module group_add
 
 
 endmodule
+
+`default_nettype wire
 
 `endif //  `ifndef _group_add_
