@@ -20,6 +20,7 @@
 `include "filter.v"
 `include "group_add.v"
 `include "rescale.v"
+`include "clip.v"
 
 
 module stream_filter
@@ -100,6 +101,8 @@ module stream_filter
     reg                             rescale_valid_1p;
     reg                             rescale_valid;
 
+    wire [IMG_WIDTH-1:0]            clip_data;
+    wire                            clip_valid;
 
 
     /**
@@ -165,8 +168,8 @@ module stream_filter
         result      <= 'b0;
         result_val  <= 1'b0;
 
-        if (rescale_valid) begin
-            result      <= rescale_data;
+        if (clip_valid) begin
+            result      <= clip_data;
             result_val  <= 1'b1;
         end
     end
@@ -240,7 +243,25 @@ module stream_filter
     );
 
 
+    clip #(
+        .WIDTH_NB   (WIDTH_NB),
+        .IMG_WIDTH  (IMG_WIDTH),
 
+        .MEM_AWIDTH (MEM_AWIDTH),
+        .MEM_DEPTH  (MEM_DEPTH))
+    clip_ (
+        .clk        (clk),
+        .rst        (rst),
+
+        .cfg_delay  (cfg_delay),
+        .cfg_set    (cfg_delay_set),
+
+        .up_data    (rescale_data),
+        .up_val     (rescale_valid),
+
+        .dn_data    (clip_data),
+        .dn_val     (clip_valid)
+    );
 
 
 endmodule

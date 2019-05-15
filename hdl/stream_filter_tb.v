@@ -183,19 +183,14 @@ module stream_filter_tb;
             img_f2r(result),
             result_val,
 
-            "\tdelay: %x %b %b",
-            uut.delay_data,
-            uut.delay_val,
-            uut.delay_.delay_val_i,
+//            "\tdelay: %x %b %b",
+//            uut.delay_data,
+//            uut.delay_val,
+//            uut.delay_.delay_val_i,
 
-            "\tfilter: %x %b",
-            uut.filter_data,
-            uut.filter_val,
-
-
-            "\tfilter: %x %b",
-            uut.cfg_ker,
-            uut.cfg_ker_set,
+//            "\tfilter: %x %b",
+//            uut.filter_data,
+//            uut.filter_val,
 
 //            "\tadd: %b\t%x",
 //            uut.add_valid,
@@ -205,6 +200,9 @@ module stream_filter_tb;
 //            uut.rescale_data,
 //            uut.rescale_valid,
 
+//            "\tclip: %x %b",
+//            uut.clip_data,
+//            uut.clip_valid,
 
         );
 
