@@ -22,7 +22,7 @@ module delay_mem
   #(parameter
     IMG_WIDTH   = 8,
 
-    MEM_AWIDTH  = 16,
+    MEM_AWIDTH  = 12,
     MEM_DEPTH   = 1<<MEM_AWIDTH)
    (input  wire                     clk,
     input  wire                     rst,
@@ -87,7 +87,7 @@ module delay_mem
         else if (up_val) begin
             wr_ptr <= wr_ptr + {{MEM_AWIDTH-1{1'b0}}, 1'b1};
 
-            if (wr_ptr == (MEM_DEPTH-1)) begin
+            if (wr_ptr == (MEM_DEPTH[MEM_AWIDTH-1:0]-1)) begin
                 wr_ptr <= 'b0;
             end
         end
@@ -107,7 +107,7 @@ module delay_mem
         else if (up_val) begin
             rd_ptr <= rd_ptr + {{MEM_AWIDTH-1{1'b0}}, 1'b1};
 
-            if (rd_ptr == (MEM_DEPTH-1)) begin
+            if (rd_ptr == (MEM_DEPTH[MEM_AWIDTH-1:0]-1)) begin
                 rd_ptr <= 'b0;
             end
         end
@@ -126,7 +126,7 @@ module delay_mem
 
 
     always @(posedge clk)
-        if      (cfg_set_r) rd_val_i <= {MEM_DEPTH{1'b0}};
+        if      (cfg_set_r) rd_val_i <= {MEM_DEPTH+1{1'b0}};
         else if (up_val)    rd_val_i <= {rd_val, 1'b1};
 
 

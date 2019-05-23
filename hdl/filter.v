@@ -95,7 +95,7 @@ module filter
 
     always @(posedge clk)
         if (rst)    valid <= 'b0;
-        else        valid <= {valid, up_val};
+        else        valid <= valid_i[MAC_PIPELINE*WIDTH_NB-1:0];
 
 
 
