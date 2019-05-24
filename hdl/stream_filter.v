@@ -30,7 +30,7 @@ module stream_filter
     CFG_DWIDTH  = 32,
     CFG_AWIDTH  = 5,
 
-    MEM_AWIDTH  = 16,
+    MEM_AWIDTH  = 12,
     MEM_DEPTH   = 1<<MEM_AWIDTH,
 
     IMG_WIDTH   = 16,
@@ -116,7 +116,7 @@ module stream_filter
         cfg_delay_set   <= 1'b0;
 
         if (cfg_valid & (cfg_addr == CFG_WIDTH)) begin
-            cfg_delay       <= cfg_data[KER_WIDTH-1:0];
+            cfg_delay       <= cfg_data[MEM_AWIDTH-1:0];
             cfg_delay_set   <= 1'b1;
         end
     end
