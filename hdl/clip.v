@@ -22,7 +22,7 @@ module clip
     WIDTH_NB    = 3,
     IMG_WIDTH   = 8,
 
-    MEM_AWIDTH  = 16,
+    MEM_AWIDTH  = 12,
     MEM_DEPTH   = 1<<MEM_AWIDTH)
    (input  wire                     clk,
     input  wire                     rst,
