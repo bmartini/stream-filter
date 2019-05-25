@@ -79,7 +79,7 @@ module delay
                 .cfg_set    (cfg_set),
 
                 .up_data    (delay[((h-1)*IMG_WIDTH) +: IMG_WIDTH]),
-                .up_val     (delay_val_i[h-1]),
+                .up_val     (delay_val_i[h-1] & up_val_r),
 
                 .dn_data    (delay[(h*IMG_WIDTH) +: IMG_WIDTH]),
                 .dn_val     (delay_val_i[h])

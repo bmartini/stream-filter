@@ -120,7 +120,7 @@ module delay_mem
 
 
 
-    assign dn_val   = rd_val[cfg_delay_r] & up_val;
+    assign dn_val   = rd_val[cfg_delay_r];
 
     assign rd_val   = rd_val_i[MEM_DEPTH-1:0];
 
