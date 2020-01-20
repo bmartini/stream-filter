@@ -29,12 +29,12 @@ module rescale
     NUM_AWIDTH  = $clog2(NUM_WIDTH), // do not overwrite
 
     IMG_WIDTH   = 16)
-   (input                       clk,
+   (input  wire                 clk,
 
-    input       [7:0]           shift,
-    input       [7:0]           head,
+    input  wire [7:0]           shift,
+    input  wire [7:0]           head,
 
-    input       [NUM_WIDTH-1:0] up_data,
+    input  wire [NUM_WIDTH-1:0] up_data,
     output reg  [IMG_WIDTH-1:0] dn_data
 );
 

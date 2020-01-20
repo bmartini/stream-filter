@@ -35,15 +35,15 @@ module stream_filter
 
     IMG_WIDTH   = 16,
     KER_WIDTH   = 16)
-   (input                           clk,
-    input                           rst,
+   (input  wire                     clk,
+    input  wire                     rst,
 
-    input       [CFG_DWIDTH-1:0]    cfg_data,
-    input       [CFG_AWIDTH-1:0]    cfg_addr,
-    input                           cfg_valid,
+    input  wire [CFG_DWIDTH-1:0]    cfg_data,
+    input  wire [CFG_AWIDTH-1:0]    cfg_addr,
+    input  wire                     cfg_valid,
 
-    input       [IMG_WIDTH-1:0]     image,
-    input                           image_val,
+    input  wire [IMG_WIDTH-1:0]     image,
+    input  wire                     image_val,
 
     output reg  [IMG_WIDTH-1:0]     result,
     output reg                      result_val

@@ -22,9 +22,9 @@ module group_add
   #(parameter
     GROUP_NB    = 4,
     NUM_WIDTH   = 16)
-   (input                                   clk,
+   (input  wire                             clk,
 
-    input       [NUM_WIDTH*GROUP_NB-1:0]    up_data,
+    input  wire [NUM_WIDTH*GROUP_NB-1:0]    up_data,
     output reg  [NUM_WIDTH-1:0]             dn_data
 );
 
