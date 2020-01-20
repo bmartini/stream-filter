@@ -186,7 +186,6 @@ module stream_filter
         .MEM_DEPTH  (MEM_DEPTH))
     delay_ (
         .clk        (clk),
-        .rst        (rst),
 
         .cfg_delay  (cfg_delay),
         .cfg_set    (cfg_delay_set),

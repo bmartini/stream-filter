@@ -25,7 +25,6 @@ module delay_mem
     MEM_AWIDTH  = 12,
     MEM_DEPTH   = 1<<MEM_AWIDTH)
    (input  wire                     clk,
-    input  wire                     rst,
 
     input  wire [MEM_AWIDTH-1:0]    cfg_delay,
     input  wire                     cfg_set,

@@ -66,9 +66,6 @@ module delay_mem_tb;
     /**
      *  signals, registers and wires
      */
-    reg                     rst;
-
-
     reg  [MEM_AWIDTH-1:0]   cfg_delay;
     reg                     cfg_set;
 
@@ -90,7 +87,6 @@ module delay_mem_tb;
         .MEM_DEPTH  (MEM_DEPTH))
     uut (
         .clk        (clk),
-        .rst        (rst),
 
         .cfg_delay  (cfg_delay),
         .cfg_set    (cfg_set),
@@ -109,8 +105,8 @@ module delay_mem_tb;
 
     task display_signals;
         $display(
-            "%d %d",
-            $time, rst,
+            "%d",
+            $time,
 
             "\tup <ptr: %d, data: %d, val: %b>",
             uut.wr_ptr,
@@ -126,7 +122,7 @@ module delay_mem_tb;
 
     task display_header;
         $display(
-            "\t\ttime rst",
+            "\t\ttime",
 
         );
     endtask
@@ -138,8 +134,6 @@ module delay_mem_tb;
 
     initial begin
         // init values
-        rst = 0;
-
         cfg_delay   = 'b0;
         cfg_set     = 1'b0;
 
@@ -147,14 +141,6 @@ module delay_mem_tb;
         up_val      = 1'b0;
         //end init
 
-`ifdef TB_VERBOSE
-    $display("RESET");
-`endif
-
-        repeat(6) @(negedge clk);
-        rst         <= 1'b1;
-        repeat(6) @(negedge clk);
-        rst         <= 1'b0;
         repeat(5) @(negedge clk);
 
 
