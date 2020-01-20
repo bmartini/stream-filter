@@ -26,7 +26,7 @@
 module rescale
   #(parameter
     NUM_WIDTH   = 33,
-    NUM_WSIZE   = $clog2(NUM_WIDTH+1), // do not overwrite
+    NUM_AWIDTH  = $clog2(NUM_WIDTH), // do not overwrite
 
     IMG_WIDTH   = 16)
    (input  wire                 clk,
@@ -47,16 +47,18 @@ module rescale
     localparam signed [IMG_WIDTH-1:0] IMG_MAX = ({1'b0, {IMG_WIDTH-1{1'b1}}});
     localparam signed [IMG_WIDTH-1:0] IMG_MIN = ({1'b1, {IMG_WIDTH-1{1'b0}}});
 
+    localparam NUM_WIDTH_MAX = NUM_WIDTH-2;
+
 
     function grater_than_max;
         input [NUM_WIDTH-1:0]   number;
-        reg   [NUM_WSIZE-1:0]   ii;
+        reg   [NUM_AWIDTH-1:0]  ii;
 
         begin
             grater_than_max = 1'b0;
 
-            for (ii = 0; ii < NUM_WIDTH[NUM_WSIZE-1:0]-2; ii=ii+1) begin
-                if (number[ii] & (ii >= head[NUM_WSIZE-1:0])) begin
+            for (ii = 0; ii < NUM_WIDTH_MAX[NUM_AWIDTH-1:0]; ii=ii+1) begin
+                if (number[ii] & (ii >= head[NUM_AWIDTH-1:0])) begin
                     grater_than_max = ~number[NUM_WIDTH-1];
                 end
             end
@@ -66,13 +68,13 @@ module rescale
 
     function less_than_min;
         input [NUM_WIDTH-1:0]   number;
-        reg   [NUM_WSIZE-1:0]   ii;
+        reg   [NUM_AWIDTH-1:0]  ii;
 
         begin
             less_than_min = 1'b0;
 
-            for (ii = 0; ii < NUM_WIDTH[NUM_WSIZE-1:0]-2; ii=ii+1) begin
-                if ( ~number[ii] & (ii >= head[NUM_WSIZE-1:0])) begin
+            for (ii = 0; ii < NUM_WIDTH_MAX[NUM_AWIDTH-1:0]; ii=ii+1) begin
+                if ( ~number[ii] & (ii >= head[NUM_AWIDTH-1:0])) begin
                     less_than_min = number[NUM_WIDTH-1];
                 end
             end
