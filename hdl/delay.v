@@ -35,7 +35,7 @@ module delay
     input  wire [IMG_WIDTH-1:0]             up_data,
     input  wire                             up_val,
 
-    output wire [IMG_WIDTH*HEIGHT_NB-1:0]   delay,
+    output wire [IMG_WIDTH*HEIGHT_NB-1:0]   delay_bus,
     output wire                             delay_val
 );
 
@@ -76,10 +76,10 @@ module delay
                 .cfg_delay  (cfg_delay),
                 .cfg_set    (cfg_set),
 
-                .up_data    (delay[((h-1)*IMG_WIDTH) +: IMG_WIDTH]),
+                .up_data    (delay_bus[((h-1)*IMG_WIDTH) +: IMG_WIDTH]),
                 .up_val     (delay_val_i[h-1] & up_val_r),
 
-                .dn_data    (delay[(h*IMG_WIDTH) +: IMG_WIDTH]),
+                .dn_data    (delay_bus[(h*IMG_WIDTH) +: IMG_WIDTH]),
                 .dn_val     (delay_val_i[h])
             );
 
@@ -95,7 +95,7 @@ module delay
     end
 
 
-    assign delay[0 +: IMG_WIDTH] = up_data_r;
+    assign delay_bus[0 +: IMG_WIDTH] = up_data_r;
 
     assign delay_val_i[0] = up_val_r;
 

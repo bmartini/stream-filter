@@ -193,7 +193,7 @@ module stream_filter
         .up_data    (image_data_1p),
         .up_val     (image_val_1p),
 
-        .delay      (delay_data),
+        .delay_bus  (delay_data),
         .delay_val  (delay_val)
     );
 

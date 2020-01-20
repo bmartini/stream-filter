@@ -73,7 +73,7 @@ module delay_tb;
     reg  [IMG_WIDTH-1:0]            up_data;
     reg                             up_val;
 
-    wire [IMG_WIDTH*HEIGHT_NB-1:0]  delay;
+    wire [IMG_WIDTH*HEIGHT_NB-1:0]  delay_bus;
     wire                            delay_val;
 
 
@@ -82,7 +82,7 @@ module delay_tb;
      */
 
     delay #(
-        .HEIGHT_NB   (HEIGHT_NB),
+        .HEIGHT_NB  (HEIGHT_NB),
         .IMG_WIDTH  (IMG_WIDTH),
 
         .MEM_AWIDTH (MEM_AWIDTH),
@@ -96,7 +96,7 @@ module delay_tb;
         .up_data    (up_data),
         .up_val     (up_val),
 
-        .delay      (delay),
+        .delay_bus  (delay_bus),
         .delay_val  (delay_val)
     );
 
@@ -115,9 +115,9 @@ module delay_tb;
             up_val,
 
             "\tdn <data: %d %d %d, val: %b>",
-            delay[(2*IMG_WIDTH) +: IMG_WIDTH],
-            delay[(1*IMG_WIDTH) +: IMG_WIDTH],
-            delay[(0*IMG_WIDTH) +: IMG_WIDTH],
+            delay_bus[(2*IMG_WIDTH) +: IMG_WIDTH],
+            delay_bus[(1*IMG_WIDTH) +: IMG_WIDTH],
+            delay_bus[(0*IMG_WIDTH) +: IMG_WIDTH],
             delay_val,
         );
 
