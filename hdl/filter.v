@@ -56,15 +56,6 @@ module filter
     genvar h;
     genvar w;
 
-
-    // array to pass image data between multiply_add
-    wire [IMG_WIDTH-1:0]            img [0:((WIDTH_NB+1)*HEIGHT_NB)-1];
-
-    // array to pass accumulated data between multiply_add
-    wire [IMG_WIDTH+KER_WIDTH-1:0]  acc [0:((WIDTH_NB+1)*HEIGHT_NB)-1];
-
-
-
     reg  [MAC_NB-1:0]   token;
     wire [2*MAC_NB-1:0] token_i;
 
@@ -102,13 +93,18 @@ module filter
     generate
         for (h=0;  h<HEIGHT_NB; h=h+1) begin : HEIGHT_
 
+            // array to pass image data between multiply_add
+            wire [IMG_WIDTH-1:0] img [WIDTH_NB+1];
 
-            assign img[h*(WIDTH_NB+1)] = up_img[h*IMG_WIDTH +: IMG_WIDTH];
+            // array to pass accumulated data between multiply_add
+            wire [IMG_WIDTH+KER_WIDTH-1:0] acc [WIDTH_NB+1];
 
-            assign acc[h*(WIDTH_NB+1)] = {IMG_WIDTH+KER_WIDTH{1'b0}};
 
-            assign result[h*(IMG_WIDTH+KER_WIDTH) +: (IMG_WIDTH+KER_WIDTH)]
-                    = acc[h*(WIDTH_NB+1)+HEIGHT_NB];
+            assign img[0] = up_img[h*IMG_WIDTH +: IMG_WIDTH];
+
+            assign acc[0] = {IMG_WIDTH+KER_WIDTH{1'b0}};
+
+            assign result[h*(IMG_WIDTH+KER_WIDTH) +: (IMG_WIDTH+KER_WIDTH)] = acc[WIDTH_NB];
 
 
 
@@ -124,11 +120,11 @@ module filter
                     .cfg_ker    (cfg_ker),
                     .cfg_val    (cfg_val & token[h*WIDTH_NB + w]),
 
-                    .up_img     (img[h*(WIDTH_NB+1) + w]),
-                    .up_acc     (acc[h*(WIDTH_NB+1) + w]),
+                    .up_img     (img[w]),
+                    .up_acc     (acc[w]),
 
-                    .dn_img     (img[h*(WIDTH_NB+1) + w + 1]),
-                    .dn_acc     (acc[h*(WIDTH_NB+1) + w + 1])
+                    .dn_img     (img[w + 1]),
+                    .dn_acc     (acc[w + 1])
                 );
 
             end
